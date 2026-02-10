@@ -6,8 +6,8 @@ import Footer from './components/views/Footer';
 
 import Home from './components/pages/Home';
 import Post from './components/pages/Post';
-import AddPost from './components/pages/AddPost';
-import EditPost from './components/pages/EditPost';
+import AddPost from './components/features/AddPost';
+import EditPost from './components/features/EditPost';
 import About from './components/pages/About';
 import NotFound from './components/pages/NotFound';
 
