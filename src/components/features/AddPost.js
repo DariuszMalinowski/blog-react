@@ -3,6 +3,8 @@ import { Container, Form, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addPost } from '../../redux/postsRedux';
 import { useNavigate } from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const AddPost = () => {
   const dispatch = useDispatch();
@@ -17,6 +19,10 @@ const AddPost = () => {
 
   const handleChange = e => {
     setPost({ ...post, [e.target.name]: e.target.value });
+  };
+
+  const handleContentChange = value => {
+    setPost({ ...post, content: value });
   };
 
   const handleSubmit = e => {
@@ -41,27 +47,34 @@ const AddPost = () => {
           className="mb-3"
           name="title"
           placeholder="Title"
+          value={post.title}
           onChange={handleChange}
         />
+
         <Form.Control
           className="mb-3"
           name="author"
           placeholder="Author"
+          value={post.author}
           onChange={handleChange}
         />
+
         <Form.Control
           className="mb-3"
           name="publishedDate"
           type="date"
+          value={post.publishedDate}
           onChange={handleChange}
         />
-        <Form.Control
-          as="textarea"
-          rows={5}
-          name="content"
-          placeholder="Content"
-          onChange={handleChange}
-        />
+
+        <div className="mb-3">
+          <label className="form-label">Content</label>
+          <ReactQuill
+            theme="snow"
+            value={post.content}
+            onChange={handleContentChange}
+          />
+        </div>
 
         <Button type="submit" className="mt-3">
           Add post
