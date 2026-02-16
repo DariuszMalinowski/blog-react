@@ -2,6 +2,9 @@
 export const getAllPosts = state => state.posts.posts;
 export const getPostById = (state, id) =>
   state.posts.posts.find(post => post.id === id);
+export const getCategories = state => state.posts.categories;
+
+
 
 // action types
 const ADD_POST = 'app/posts/ADD_POST';
@@ -22,6 +25,7 @@ const initialState = {
       author: 'Jan Kowalski',
       publishedDate: '2026-02-09',
       content: 'To jest treść pierwszego posta',
+      category: 'Sport'
     },
     {
       id: '2',
@@ -29,6 +33,7 @@ const initialState = {
       author: 'Anna Nowak',
       publishedDate: '2026-02-08',
       content: 'To jest treść drugiego posta',
+      category: 'News'
     },
     {
       id: '3',
@@ -36,8 +41,10 @@ const initialState = {
       author: 'Alan Dziąsło',
       publishedDate: '2026-02-08',
       content: 'To jest treść trzeciego posta',
+      category: 'Movies'
     },
   ],
+  categories: ['Sport', 'News', 'Movies'],
 };
 
 // reducer

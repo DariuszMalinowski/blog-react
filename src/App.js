@@ -10,6 +10,10 @@ import AddPost from './components/features/AddPost';
 import EditPost from './components/features/EditPost';
 import About from './components/pages/About';
 import NotFound from './components/pages/NotFound';
+import Categories from './components/pages/Categories';
+import Category from './components/pages/Category';
+
+
 
 
 const App = () => {
@@ -24,6 +28,8 @@ const App = () => {
         <Route path="/post/edit/:id" element={<EditPost />} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/category/:name" element={<Category />} />
       </Routes>
 
       <Footer />

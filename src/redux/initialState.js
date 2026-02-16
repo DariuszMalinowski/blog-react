@@ -6,22 +6,24 @@ const initialState = {
       author: 'Jan Kowalski',
       publishedDate: '2026-02-09',
       content: 'To jest treść pierwszego posta',
+      category: 'Sport'
     },
     {
       id: '2',
       title: 'Drugi post',
       author: 'Anna Nowak',
-      publishedDate: '2026-02-09',
+      publishedDate: '2026-02-08',
       content: 'To jest treść drugiego posta',
+      category: 'News'
+    },
+    {
+      id: '3',
+      title: 'Trzeci post',
+      author: 'Alan Dziąsło',
+      publishedDate: '2026-02-08',
+      content: 'To jest treść trzeciego posta',
+      category: 'Movies'
     },
   ],
+  categories: ['Sport', 'News', 'Movies'],
 };
-
-const postsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    default:
-      return state; // NIE mutuj stanu!
-  }
-};
-
-export default postsReducer;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { addPost } from '../../redux/postsRedux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPost, getCategories } from '../../redux/postsRedux';
 import { useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -9,11 +9,14 @@ import 'react-quill/dist/quill.snow.css';
 const AddPost = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const categories = useSelector(getCategories) || [];
+
 
   const [post, setPost] = useState({
     title: '',
     author: '',
     publishedDate: '',
+    category: '',
     content: '',
   });
 
@@ -67,6 +70,22 @@ const AddPost = () => {
           onChange={handleChange}
         />
 
+        {/* SELECT CATEGORY */}
+        <Form.Select
+          className="mb-3"
+          name="category"
+          value={post.category}
+          onChange={handleChange}
+        >
+          <option value="">Select category</option>
+          {categories.map(cat => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </Form.Select>
+
+        {/* CONTENT */}
         <div className="mb-3">
           <label className="form-label">Content</label>
           <ReactQuill

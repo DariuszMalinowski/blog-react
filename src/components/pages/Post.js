@@ -11,10 +11,8 @@ const Post = () => {
 
   const post = useSelector(state => getPostById(state, id));
 
-  // stan do obsługi modala
   const [showModal, setShowModal] = useState(false);
 
-  // jeśli post nie istnieje → wracamy na stronę główną
   if (!post) {
     return <Navigate to="/" />;
   }
@@ -22,13 +20,15 @@ const Post = () => {
   const handleDelete = () => {
     dispatch(removePost(post.id));
     setShowModal(false);
+    navigate('/');
   };
 
   return (
     <Container className="mt-4">
       <Card>
         <Card.Body>
-          {/* HEADER POSTA */}
+
+          {/* HEADER */}
           <div className="d-flex justify-content-between align-items-center mb-3">
             <Card.Title>{post.title}</Card.Title>
 
@@ -51,12 +51,24 @@ const Post = () => {
           </div>
 
           {/* META */}
-          <Card.Subtitle className="mb-3 text-muted">
-            Author: {post.author} | Published: {post.publishedDate}
+          <Card.Subtitle className="mb-2 text-muted">
+            Author: {post.author}
           </Card.Subtitle>
 
-          {/* TREŚĆ */}
-          <Card.Text>{post.content}</Card.Text>
+          <Card.Subtitle className="mb-2 text-muted">
+            Published: {post.publishedDate}
+          </Card.Subtitle>
+
+          {/* NOWE — KATEGORIA */}
+          <Card.Subtitle className="mb-3 text-muted">
+            Category: {post.category}
+          </Card.Subtitle>
+
+          {/* TREŚĆ Z REACTQUILL */}
+          <div
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+
         </Card.Body>
       </Card>
 
